@@ -24,3 +24,12 @@ VALUES
 (1007, 'HR', 7800000),
 (1008, 'SE', 890000),
 (1009, 'CFO', 7800000);
+
+
+/*
+Select Statement 
+*, Top, Distinct, Count, As, Max, Min, Avg
+*/
+
+SELECT *
+FROM EmployeeDemographics 
