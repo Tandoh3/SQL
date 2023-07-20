@@ -33,3 +33,30 @@ Select Statement
 
 SELECT *
 FROM EmployeeDemographics 
+
+--Show only FirstName and LastName 
+SELECT FirstName, LastName
+FROM EmployeeDemographics;
+
+-- TOP (Head of the dataset) 
+SELECT TOP 5 * 
+FROM EmployeeDemographics;
+
+-- DISTINCT (unique values of a specific column) 
+SELECT DISTINCT EmployeeID 
+FROM EmployeeDemographics;
+
+--COUNT (all the non null values in a column) 
+SELECT COUNT(Age) AS AgeCount
+FROM EmployeeDemographics;
+
+--MAX (Finds the maximum value in the column) 
+SELECT MAX(Salary)
+FROM EmployeeSalary;
+
+SELECT MIN(Salary) 
+FROM EmployeeSalary;
+
+---Because the value was too large 
+SELECT AVG(CAST(Salary AS bigint)) 
+FROM EmployeeSalary;
