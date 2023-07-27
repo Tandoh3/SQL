@@ -181,6 +181,53 @@ INNER JOIN EmployeeSalary
 WHERE JobTitle = 'Sales'
 GROUP BY JobTitle
 
+/*
+UNION, UNION ALL 
+*/
+SELECT * 
+FROM EmployeeDemographics
+
+SELECT * 
+FROM EmployeeSalary
+
+CREATE TABLE WareHouseEmployeeDemographics(
+EmployeeID int, 
+FirstName varchar(255), 
+LastName varchar(255), 
+Age int, 
+Gender varchar(255)
+);
+
+INSERT INTO WareHouseEmployeeDemographics
+(EmployeeID, FirstName, LastName, Age, Gender)
+VALUES 
+(1050, 'Roy', 'Anderson', 31, 'Male'),
+(1051, 'Hidesnshi', 'Hagawa', 40, 'Male'),
+(1052, 'Val', 'Johnson', 31, 'Female'),
+(1013, 'Darryl', 'Philbin', NULL, 'Male');
+
+
+-- Remove duplicates 
+SELECT * 
+FROM EmployeeDemographics
+UNION
+SELECT * 
+FROM WareHouseEmployeeDemographics 
+
+SELECT * 
+FROM EmployeeDemographics
+UNION ALL
+SELECT * 
+FROM WareHouseEmployeeDemographics 
+ORDER BY EmployeeID
+
+
+SELECT EmployeeID, FirstName, Age 
+FROM EmployeeDemographics
+UNION
+SELECT EmployeeID, JobTitle, Salary 
+FROM EmployeeSalary
+ORDER BY EmployeeID
 
 
 
