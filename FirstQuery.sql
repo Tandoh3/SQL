@@ -97,7 +97,28 @@ SELECT *
 FROM EmployeeDemographics
 WHERE FirstName IN ('Nana Banyin', 'Aku')
 
+/*
+GROUP BY ,
+ORDER BY 
+*/
+
+-- Shows distinct or unique values in each column
+SELECT Gender, COUNT(Gender) AS CountGender 
+FROM EmployeeDemographics
+GROUP BY Gender 
+
+SELECT Gender, COUNT(Gender) AS CountGender 
+FROM EmployeeDemographics
+GROUP BY Gender 
+ORDER BY Gender DESC
 
 
+SELECT * 
+FROM EmployeeDemographics
+ORDER BY Age, Gender 
 
+
+SELECT * 
+FROM EmployeeDemographics
+ORDER BY 4 DESC, 5 DESC
 
