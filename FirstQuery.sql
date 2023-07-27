@@ -167,6 +167,23 @@ FROM EmployeeDemographics AS ED
 INNER JOIN EmployeeSalary AS ES 
 	ON ED.EmployeeID = ES.EmployeeID
 
+SELECT EmployeeDemographics.EmployeeID, FirstName, LastName, Salary 
+FROM EmployeeDemographics
+INNER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+WHERE FirstName <> 'Nana Banyin'
+ORDER BY Salary DESC
+
+SELECT JobTitle, AVG(Salary) 
+FROM EmployeeDemographics
+INNER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+WHERE JobTitle = 'Sales'
+GROUP BY JobTitle
+
+
+
+
 
 
 
