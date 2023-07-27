@@ -122,3 +122,48 @@ SELECT *
 FROM EmployeeDemographics
 ORDER BY 4 DESC, 5 DESC
 
+/*
+INNER JOINS, FULL/LEFT/RIGHT/ OUTER JOINS 
+*/
+INSERT INTO EmployeeDemographics
+(EmployeeID, FirstName, LastName, Age, Gender) 
+VALUES 
+(1011, 'Ryan', 'Howard', 26, 'Male'),
+(NULL, 'Holly', 'Flax', NULL, NULL), 
+(1013, 'Darryl', 'Philbin', NULL, 'Male');
+
+INSERT INTO EmployeeSalary
+(EmployeeID, JobTitle, Salary) 
+VALUES 
+(1010, NULL, 47000),
+(NULL, 'Driver', 43000);
+
+--Inner Join 
+SELECT * 
+FROM EmployeeDemographics
+INNER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+--Full Outer Join 
+SELECT * 
+FROM EmployeeDemographics
+FULL OUTER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+-- Left Outer Join 
+SELECT * 
+FROM EmployeeDemographics
+LEFT OUTER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+-- Right Outer Join 
+SELECT * 
+FROM EmployeeDemographics
+RIGHT OUTER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+
+
+
+
+
