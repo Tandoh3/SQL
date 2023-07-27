@@ -162,6 +162,10 @@ FROM EmployeeDemographics
 RIGHT OUTER JOIN EmployeeSalary
 	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 
+SELECT ED.EmployeeID, (FirstName + ' ' + LastName) AS FullName, JobTitle, Salary 
+FROM EmployeeDemographics AS ED
+INNER JOIN EmployeeSalary AS ES 
+	ON ED.EmployeeID = ES.EmployeeID
 
 
 
