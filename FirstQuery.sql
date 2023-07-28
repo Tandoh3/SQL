@@ -1,67 +1,92 @@
-
-----INSERT INTO EmployeeDemographics
-----(EmployeeID, FirstName, LastName, Age, Gender) 
-----VALUES 
-----(4, 'Aku', 'Adehenu', 22, 'Female'),
-----(5, 'Kwame', 'Frimpong', 34, 'Male'),
-----(6, 'Abena', 'Bortey',45, 'Female'),
-----(7, 'Kwamina', 'Hammond', 23, 'Male'),
-----(8, 'Maame', 'Tandoh', 34, 'Female'),
-----(7, 'Nii', 'Agyei', 45, 'Male');
-
-------UPDATE EmployeeDemographics
-------SET EmployeeID = 1009
-------WHERE FirstName = 'Nii';
-
---INSERT INTO EmployeeSalary
---(EmployeeID, JobTitle, Salary)
---VALUES 
---(1001, 'CEO', 1455555000),
---(1002, 'COO', 5600078),
---(1003, 'Manager', 450078),
---(1004, 'MD', 1350000000),
---(1005, 'Sales', 679000),
---(1006, 'Operations Head', 5678999),
---(1007, 'HR', 7800000),
---(1008, 'SE', 890000),
---(1009, 'CFO', 7800000);
+--CREATING AND INSERTING ROWS INTO THE TABLE 
+-- Create table EmployeeDemographics 
+CREATE TABLE EmployeeDemographics(
+EmployeeID int,
+FirstName varchar(255), 
+LastName varchar(255),
+Age int,
+Gender varchar(255))
 
 
+-- Insert rows into the table EmployeeDemographics 
+INSERT INTO EmployeeDemographics
+(EmployeeID, FirstName, LastName, Age, Gender) 
+VALUES 
+(4, 'Aku', 'Adehenu', 22, 'Female'),
+(5, 'Kwame', 'Frimpong', 34, 'Male'),
+(6, 'Abena', 'Bortey',45, 'Female'),
+(7, 'Kwamina', 'Hammond', 23, 'Male'),
+(8, 'Maame', 'Tandoh', 34, 'Female'),
+(7, 'Nii', 'Agyei', 45, 'Male');
+
+
+--- Update EmployeeDemographics 
+UPDATE EmployeeDemographics
+SET EmployeeID = 1009
+WHERE FirstName = 'Nii';
+
+-- Create Table EmployeeSalary 
+CREATE TABLE EmployeeSalary(
+EmployeeID int, 
+JobTitle varchar(255),
+Salary int
+) 
+
+-- Insert rows into table EmployeeSalary 
+INSERT INTO EmployeeSalary
+(EmployeeID, JobTitle, Salary)
+VALUES 
+(1001, 'CEO', 1455555000),
+(1002, 'COO', 5600078),
+(1003, 'Manager', 450078),
+(1004, 'MD', 1350000000),
+(1005, 'Sales', 679000),
+(1006, 'Operations Head', 5678999),
+(1007, 'HR', 7800000),
+(1008, 'SE', 890000),
+(1009, 'CFO', 7800000);
+
+
+
+---PERFORMING AGGREGATIONS ON THE TABLE 
 --/*
 --Select Statement 
 --*, Top, Distinct, Count, As, Max, Min, Avg
 --*/
 
---SELECT *
---FROM EmployeeDemographics 
+-- Show all the data in EmployeeDemographics table 
+SELECT *
+FROM EmployeeDemographics 
 
-----Show only FirstName and LastName 
---SELECT FirstName, LastName
---FROM EmployeeDemographics;
+--Show only FirstName and LastName 
+SELECT FirstName, LastName
+FROM EmployeeDemographics;
 
----- TOP (Head of the dataset) 
---SELECT TOP 5 * 
---FROM EmployeeDemographics;
+--- TOP (Head of the dataset) 
+SELECT TOP 5 * 
+FROM EmployeeDemographics;
 
 ---- DISTINCT (unique values of a specific column) 
---SELECT DISTINCT EmployeeID 
---FROM EmployeeDemographics;
+SELECT DISTINCT EmployeeID 
+FROM EmployeeDemographics;
 
 ----COUNT (all the non null values in a column) 
---SELECT COUNT(Age) AS AgeCount
---FROM EmployeeDemographics;
+SELECT COUNT(Age) AS AgeCount
+FROM EmployeeDemographics;
 
 ----MAX (Finds the maximum value in the column) 
---SELECT MAX(Salary)
---FROM EmployeeSalary;
+SELECT MAX(Salary)
+FROM EmployeeSalary;
 
---SELECT MIN(Salary) 
---FROM EmployeeSalary;
+SELECT MIN(Salary) 
+FROM EmployeeSalary;
 
------Because the value was too large 
---SELECT AVG(CAST(Salary AS bigint)) 
---FROM EmployeeSalary;
+-----Because the max salary value was too large 
+SELECT AVG(CAST(Salary AS bigint)) 
+FROM EmployeeSalary;
 
+
+--- WHERE CONSTRAINTS
 /*
 WHERE Statement 
 =, <>, <,>, AND, OR, LIKE, NULL, 
@@ -97,6 +122,8 @@ SELECT *
 FROM EmployeeDemographics
 WHERE FirstName IN ('Nana Banyin', 'Aku')
 
+
+--SORTING THE DATA 
 /*
 GROUP BY ,
 ORDER BY 
@@ -122,6 +149,8 @@ SELECT *
 FROM EmployeeDemographics
 ORDER BY 4 DESC, 5 DESC
 
+
+-- MAKING JOINS OF TWO TABLES 
 /*
 INNER JOINS, FULL/LEFT/RIGHT/ OUTER JOINS 
 */
@@ -180,6 +209,8 @@ INNER JOIN EmployeeSalary
 	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 GROUP BY JobTitle
 
+
+-- UNION OF TABLES WITH SAME NUMBER OF COLUMNS AND DATATYPES 
 /*
 UNION, UNION ALL 
 */
@@ -228,6 +259,8 @@ SELECT EmployeeID, JobTitle, Salary
 FROM EmployeeSalary
 ORDER BY EmployeeID
 
+
+-- CASE STATEMENTS (LIKE THE IF-STATEMENTS) 
 /*
 CASE STATEMENTS 
 */
@@ -253,6 +286,8 @@ FROM EmployeeDemographics
 JOIN EmployeeSalary
 	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 
+
+-- HAVING STATEMENTS USED TO MAKE DRILLED DOWN AGGREGATIONS (HIGHER GROUPBY) 
 /*
 HAVING CLAUSE 
 */
@@ -284,7 +319,7 @@ WHERE EmployeeID = 1013
 
 
 
-
+-- GIVING TEMPORARY NAMES TO COLUMNS 
 /*
 ALIASING 
 */
@@ -307,6 +342,7 @@ JOIN EmployeeSalary AS Sal
 
 
 
+-- USING PARTITION BY 
 /*
 PARTTION BY 
 */
@@ -319,6 +355,8 @@ FROM EmployeeDemographics AS Demo
 JOIN EmployeeSalary AS Sal 
 	ON Demo.EmployeeID = Sal.EmployeeID
 
+
+--- USING CTEs 
 /*
 CTEs 
 */
@@ -337,7 +375,7 @@ SELECT FirstName, AvgSalary
 FROM CTE_Employee
 
 
-
+-- TEMP TABLES (REDUCES REPETITION) 
 /*
 TEMP TABLES 
 */
@@ -375,8 +413,8 @@ GROUP BY JobTitle
 SELECT * 
 FROM #Temp_Employee2
 
---Stored Procedures 
 
+---USING STRING FUNCTIONS TO WORK ON STRING DATATYPE (VARCHAR) 
 /*
 String Functions - TRIM, LTRIM, RTRIM, REPLACE, SUBSTRING, UPPER, LOWER
 */
