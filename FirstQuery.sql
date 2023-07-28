@@ -286,10 +286,24 @@ WHERE EmployeeID = 1013
 
 
 
+/*
+ALIASING 
+*/
 
+INSERT INTO EmployeeDemographics
+(EmployeeID, FirstName, LastName, Age, Gender) 
+VALUES 
+(1020, 'Darryl', 'Philbian', NULL, 'Male') 
 
+SELECT FirstName + ' ' + LastName AS FullName
+FROM EmployeeDemographics
 
+SELECT AVG(Age) AS AVGAge
+FROM EmployeeDemographics
 
-
+SELECT Demo.EmployeeID, Sal.Salary
+FROM EmployeeDemographics AS Demo
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
 
 
