@@ -174,11 +174,10 @@ INNER JOIN EmployeeSalary
 WHERE FirstName <> 'Nana Banyin'
 ORDER BY Salary DESC
 
-SELECT JobTitle, AVG(Salary) 
+SELECT JobTitle, COUNT(JobTitle) AS CountJobTitle, AVG(Salary) AS AvgSalary, AVG(Age) AvgSalary  
 FROM EmployeeDemographics
 INNER JOIN EmployeeSalary
 	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
-WHERE JobTitle = 'Sales'
 GROUP BY JobTitle
 
 /*
@@ -336,3 +335,45 @@ WHERE Salary > '450000'
 )
 SELECT FirstName, AvgSalary
 FROM CTE_Employee
+
+
+
+/*
+TEMP TABLES 
+*/
+
+CREATE TABLE #temp_Employee( 
+EmployeeID int, 
+JobTitle varchar(100),
+Salary int 
+) 
+
+SELECT * 
+FROM #temp_Employee
+
+
+INSERT INTO #temp_Employee
+SELECT * 
+FROM EmployeeSalary
+
+
+DROP TABLE IF EXISTS #Temp_Employee2
+CREATE TABLE #Temp_Employee2(
+JobTitle varchar(50),
+EmployeePerJob int, 
+AvgAge int, 
+AvgSalary int) 
+
+INSERT INTO #Temp_Employee2
+SELECT JobTitle, COUNT(JobTitle) AS CountJobTitle, AVG(Salary) AS AvgSalary, AVG(Age) AvgSalary  
+FROM EmployeeDemographics
+INNER JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+GROUP BY JobTitle
+
+
+SELECT * 
+FROM #Temp_Employee2
+
+
+--Stored Procedures 
