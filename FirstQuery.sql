@@ -307,3 +307,15 @@ JOIN EmployeeSalary AS Sal
 	ON Demo.EmployeeID = Sal.EmployeeID
 
 
+
+/*
+PARTTION BY 
+*/
+--Join EmployeeDemographics and EmployeeSalary 
+
+SELECT FirstName, LastName, Gender, Salary,
+COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender
+FROM EmployeeDemographics AS Demo 
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
+
