@@ -254,6 +254,20 @@ FROM EmployeeDemographics
 JOIN EmployeeSalary
 	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 
+/*
+HAVING CLAUSE 
+*/
+SELECT JobTitle, AVG(Salary)
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+GROUP BY JobTitle
+HAVING AVG(Salary) > 450000
+ORDER BY AVG(Salary) 
+
+
+
+
 
 
 
