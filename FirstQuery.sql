@@ -314,8 +314,25 @@ PARTTION BY
 --Join EmployeeDemographics and EmployeeSalary 
 
 SELECT FirstName, LastName, Gender, Salary,
-COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender
+COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender,
+AVG(Salary) OVER (PARTITION BY Gender) AS AvgSalary 
 FROM EmployeeDemographics AS Demo 
 JOIN EmployeeSalary AS Sal 
 	ON Demo.EmployeeID = Sal.EmployeeID
 
+/*
+CTEs 
+*/
+-- Created in memory, works like subquery 
+
+WITH CTE_Employee AS 
+(SELECT FirstName, LastName, Gender, Salary,
+COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender,
+AVG(Salary) OVER (PARTITION BY Gender) AS AvgSalary 
+FROM EmployeeDemographics AS Demo 
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
+WHERE Salary > '450000'
+)
+SELECT FirstName, AvgSalary
+FROM CTE_Employee
