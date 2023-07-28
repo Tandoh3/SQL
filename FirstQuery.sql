@@ -229,6 +229,34 @@ SELECT EmployeeID, JobTitle, Salary
 FROM EmployeeSalary
 ORDER BY EmployeeID
 
+/*
+CASE STATEMENTS 
+*/
+--SELECT FirstName, LastName, Age,
+--CASE	
+--	WHEN Age > 30 THEN 'Old'
+--	WHEN Age BETWEEN 27 AND 30 THEN 'Young'
+--	ELSE 'Young Blood'
+--END AS AgeClassification
+--FROM EmployeeDemographics
+--WHERE Age IS NOT NULL
+--ORDER BY Age
+
+
+SELECT FirstName, LastName, JobTitle, Salary,
+CASE 
+	WHEN JobTitle = 'Sales' THEN Salary + (Salary * .10) 
+	WHEN JobTitle = 'Operations Head' THEN Salary + (Salary * .05)
+	WHEN JobTitle = 'HR' THEN Salary + (Salary *.000001) 
+	ELSE Salary + (Salary * .03) 
+END AS SalaryAfterRaise
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+
+
+
 
 
 
